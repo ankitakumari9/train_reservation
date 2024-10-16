@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seat Reservation</title>
+</head>
+<body>
+    <h1>Train Seat Reservation</h1>
+    <form method="POST" action="/reserve">
+        <label for="num_seats">Number of Seats to Reserve (up to 7):</label>
+        <input type="number" id="num_seats" name="num_seats" min="1" max="7" required>
+        <button type="submit">Reserve</button>
+    </form>
+    <h2>Seat Status:</h2>
+    <table>
+        {% for i in range(12) %}
+            <tr>
+                <td>Row {{ i + 1 }}:</td>
+                {% if i < 11 %}
+                    {% for j in range(7) %}
+                        <td>{{ 'X' if seats[i * 7 + j] else 'O' }}</td>
+                    {% endfor %}
+                {% else %}
+                    {% for j in range(3) %}
+                        <td>{{ 'X' if seats[77 + j] else 'O' }}</td>
+                    {% endfor %}
+                {% endif %}
+            </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
